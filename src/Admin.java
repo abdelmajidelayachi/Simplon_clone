@@ -10,8 +10,7 @@ public class Admin {
         Scanner scanner = new Scanner(System.in);
         email = scanner.nextLine();
         password = scanner.nextLine();
-
-        return "hello";
+        return email;
     }
 
 }
