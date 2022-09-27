@@ -1,23 +1,16 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Learner {
-    public String firstName;
-    public String lastName;
-    public String email;
-    public String password;
-    static ArrayList<Learner> learners = new ArrayList<Learner>();
+public class Learner extends Person {
+    static ArrayList<Person> learners = new ArrayList<Person>();
+
     public Learner(String fName,String lName,String mail){
-            this.firstName = fName;
-            this.lastName = lName;
-            this.email = mail;
-            this.password = this.firstName.trim().toLowerCase()+"22";
+        super(fName,lName,mail);
     }
-    public static ArrayList<Learner> getLearners(){
+    public static ArrayList<Person> getLearners(){
         return learners;
     }
-    public static ArrayList<Learner> CreateLearner(String fName,String lName,String mail){
+    public static void createLearner(String fName,String lName,String mail){
         learners.add(new Learner(fName,lName,mail));
-        return learners;
     }
 }
