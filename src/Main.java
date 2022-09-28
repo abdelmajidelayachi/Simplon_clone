@@ -124,7 +124,12 @@ public class Main {
                 }
                 case "Former" -> {
                     System.out.println("Welcome to Formers Home page 🤩🤩🤩🤩");
-                    scanner.nextLine();
+                    while (true) {
+                        boolean isLoggin = Former.formerMenu();
+                        if (!isLoggin) {
+                            break;
+                        }
+                    }
                 }
                 case "Learner" -> {
                     System.out.println("Welcome to Learners Home page 🤩🤩🤩🤩");

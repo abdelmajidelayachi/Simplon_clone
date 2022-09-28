@@ -1,16 +1,18 @@
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class Promo {
 
     public String namePromo;
     public String formerPromoRef;
-
+    public String promoReference;
     static Scanner scanner = new Scanner(System.in);
     static ArrayList<Promo> promos = new ArrayList<Promo>();
     public Promo(String name,String formerRef){
         this.namePromo = name;
         this.formerPromoRef = formerRef;
+        this.promoReference = "Promo" + Calendar.getInstance().get(Calendar.YEAR)+promos.size()+1;
     }
 
     // get all promo
@@ -49,8 +51,10 @@ public class Promo {
             return true;
         }
         return false;
-
-
+    }
+    public static boolean addLearner(){
+        // here where i'm going to add learner reference 
+        return false;
     }
 
 
