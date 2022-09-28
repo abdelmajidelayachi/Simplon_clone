@@ -6,6 +6,7 @@ public class Person {
     public String lastName;
     public String email;
     public String password;
+    public String promoRef = "";
 
     public Person(String fName,String lName,String mail,String role,int lastUser){
         this.reference = role + Calendar.getInstance().get(Calendar.YEAR)+lastUser;
@@ -13,5 +14,17 @@ public class Person {
         this.lastName = lName;
         this.email = mail;
         this.password = this.firstName.trim().toLowerCase()+"22";
+        if(role.equals("Learner")){
+            this.promoRef = "";
+        }
+    }
+
+    public static int handleException(String inputOption){
+        try{
+            return Integer.parseInt(inputOption);
+        }catch (Exception e){
+            System.out.println("Something went wrong!!!!"+ e);
+            return -1;
+        }
     }
 }

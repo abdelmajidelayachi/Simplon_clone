@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
+    static String loggedInUserRef ="";
     private static int checkEmailIsExists(String property,ArrayList<Person> users){
         for (int i = 0; i < users.size() ; i++) {
             if(property.equals(users.get(i).email)){
@@ -25,6 +26,7 @@ public class Main {
             int indexOfUser = checkEmailIsExists(email,users);
             if(indexOfUser != -1){
                 if(users.get(indexOfUser).password.equals(password)){
+                    loggedInUserRef =users.get(indexOfUser).reference;
                     return true;
                 }else{
                     System.out.println("To continue : Press 1");
@@ -80,10 +82,12 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Admin.createAdmin("Abdelmajid","El Ayachi","elayachiabdel@gmail.com");
-        Former.createFormer("Mohammed","El Ayachi","elayachiabdel@gmail.com");
-       /* Learner.createLearner("learner1","El Ayachi","learner1@gmail.com");
-        Former.createFormer("Mohammed","El Ayachi","elayachiabdel@gmail.com");*/
+        Admin.createAdmin("admin","El Ayachi","admin");
+        Former.createFormer("Former","El Ayachi","former");
+        Learner.createLearner("learner1","El Ayachi","learner11");
+        Learner.createLearner("learner1","El Ayachi","learner12");
+        Learner.createLearner("learner1","El Ayachi","learner13");
+      /*   Former.createFormer("Mohammed","El Ayachi","elayachiabdel@gmail.com");*/
 //        System.out.println("-------------------learners-----------------------");
 //        ArrayList<Person> learners = Learner.getLearners();
 //         for (int i = 0; i < Learner.getLearners().size(); i++) {
@@ -124,7 +128,12 @@ public class Main {
                 }
                 case "Former" -> {
                     System.out.println("Welcome to Formers Home page 🤩🤩🤩🤩");
-                    scanner.nextLine();
+                    while (true) {
+                        boolean isLoggin = Former.formerMenu(loggedInUserRef);
+                        if (!isLoggin) {
+                            break;
+                        }
+                    }
                 }
                 case "Learner" -> {
                     System.out.println("Welcome to Learners Home page 🤩🤩🤩🤩");

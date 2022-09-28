@@ -58,9 +58,13 @@ public class Admin extends Person {
                     if (isFormerCreated)
                         break;
                     else {
-                        System.out.println("To continue : Press 1");
-                        System.out.println("To back     : Press 0");
-                        if (Integer.parseInt(scanner.nextLine()) == 0) {
+                        int option = -1;
+                        do {
+                            System.out.println("To continue : Press 1");
+                            System.out.println("To back     : Press 0");
+                            option = Person.handleException(scanner.nextLine());
+                        } while (option == -1);
+                        if(option == 0 ){
                             break;
                         }
                     }
@@ -71,9 +75,13 @@ public class Admin extends Person {
                     if(isLearnerCreated)
                         break;
                     else{
-                        System.out.println("To continue : Press 1");
-                        System.out.println("To back     : Press 0");
-                        if(Integer.parseInt(scanner.nextLine()) == 0){
+                        int option = -1;
+                        do {
+                            System.out.println("To continue : Press 1");
+                            System.out.println("To back     : Press 0");
+                            option = Person.handleException(scanner.nextLine());
+                        } while (option == -1);
+                        if(option == 0 ){
                             break;
                         }
                     }
