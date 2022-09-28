@@ -5,7 +5,7 @@ public class Learner extends Person {
     static ArrayList<Person> learners = new ArrayList<Person>();
 
     public Learner(String fName,String lName,String mail){
-        super(fName,lName,mail);
+        super(fName,lName,mail,"LEARNER",Learner.getLearners().size()+1);
     }
     public static ArrayList<Person> getLearners(){
         return learners;

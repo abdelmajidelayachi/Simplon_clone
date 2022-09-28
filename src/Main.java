@@ -81,8 +81,8 @@ public class Main {
 
     public static void main(String[] args) {
         Admin.createAdmin("Abdelmajid","El Ayachi","elayachiabdel@gmail.com");
-       /* Learner.createLearner("learner1","El Ayachi","learner1@gmail.com");
         Former.createFormer("Mohammed","El Ayachi","elayachiabdel@gmail.com");
+       /* Learner.createLearner("learner1","El Ayachi","learner1@gmail.com");
         Former.createFormer("Mohammed","El Ayachi","elayachiabdel@gmail.com");*/
 //        System.out.println("-------------------learners-----------------------");
 //        ArrayList<Person> learners = Learner.getLearners();
@@ -103,34 +103,36 @@ public class Main {
 //            System.out.println("password : "+formers.get(i).password);
 //        }
 //        System.out.println("----------------------admins---------------------");
-//         ArrayList<Person> admins = Admin.getAdmins();
-//         for (int i = 0; i < admins.size(); i++) {
-//            System.out.println("user "+i);
-//            System.out.println("firstName : "+admins.get(i).firstName);
-//            System.out.println("lastName : "+admins.get(i).lastName);
-//            System.out.println("email : "+admins.get(i).email);
-//            System.out.println("password : "+admins.get(i).password);
-//        }
-        String role = authantification();
-        switch (role){
-            case "Admin"->{
+         ArrayList<Person> admins = Admin.getAdmins();
+         for (int i = 0; i < admins.size(); i++) {
+            System.out.println("user "+i);
+            System.out.println("firstName : "+admins.get(i).firstName);
+            System.out.println("lastName : "+admins.get(i).lastName);
+            System.out.println("email : "+admins.get(i).reference);
+        }
+        while (true) {
+            String role = authantification();
+            switch (role) {
+                case "Admin" -> {
                     System.out.println("welcome to Administration Home page 🤩🤩🤩🤩");
-                while (true) {
-                    Admin.adminMenu();
+                    while (true) {
+                        boolean isLoggin = Admin.adminMenu();
+                        if (!isLoggin) {
+                            break;
+                        }
+                    }
+                }
+                case "Former" -> {
+                    System.out.println("Welcome to Formers Home page 🤩🤩🤩🤩");
                     scanner.nextLine();
                 }
+                case "Learner" -> {
+                    System.out.println("Welcome to Learners Home page 🤩🤩🤩🤩");
+                    scanner.nextLine();
+                }
+                default -> System.exit(0);
             }
-            case "Former"->{
-                System.out.println("Welcome to Formers Home page 🤩🤩🤩🤩");
-                scanner.nextLine();
-            }
-            case "Learner"->{
-                System.out.println("Welcome to Learners Home page 🤩🤩🤩🤩");
-                scanner.nextLine();
-            }
-            default -> System.exit(0);
         }
-
 
 
     }
