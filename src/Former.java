@@ -15,7 +15,7 @@ public class Former extends Person {
     public static void createFormer(String fName,String lName,String mail){
         formers.add(new Former(fName,lName,mail));
     }
-    public static boolean formerMenu(){
+    public static boolean formerMenu(String loggedInRef){
         System.out.println("Select the next operation : Press ");
         System.out.println("1 : Add Learner to my promo.");
         System.out.println("2 : Create brief.");
@@ -30,7 +30,7 @@ public class Former extends Person {
         switch (selectedNumOfOption){
             case 1 ->{
                 while (true) {
-                    boolean isPromoLearnerAdded = Promo.addLearner();
+                    boolean isPromoLearnerAdded = Promo.addLearner(loggedInRef);
                     if (isPromoLearnerAdded)
                         break;
                     else {

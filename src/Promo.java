@@ -52,8 +52,44 @@ public class Promo {
         }
         return false;
     }
-    public static boolean addLearner(){
-        // here where i'm going to add learner reference 
+    public static boolean addLearner(String loggedInRef){
+        // here where i'm going to add learner reference
+        String promoRef = "";
+        System.out.println("----------------------------------------- Adding Learner to my Promo ---------------------------------------------");
+        System.out.print("Your promo is  : ");
+        for (Promo promo : promos) {
+            if(promo.formerPromoRef.equals(loggedInRef)){
+                System.out.println(promo.namePromo);
+                promoRef = promo.promoReference;
+            }
+        }
+        System.out.println("Select Your learner promo : ");
+        System.out.println("|-----------------------------------------------------------------------------------------|");
+        System.out.println("|   Select  |    Reference     |   First Name   |   Last Name    |           email        |");
+        System.out.println("|-----------------------------------------------------------------------------------------|");
+
+        ArrayList<Person> learners = Learner.getLearners();
+        int i=0;
+        for (Person learner : learners) {
+            if(learner.promoRef.isEmpty()){
+                System.out.println("|   Press " + i + "  |    " + learner.reference + "     |   " + learner.firstName + "   |   " + learner.lastName + "    |" + learner.email + "|");
+                System.out.println("|-----------------------------------------------------------------------------------------|");
+            }
+                i++;
+        }
+        String refScanner = scanner.nextLine();
+        int selectedNumRef = 0;
+        String referenceLearner = "";
+        try{
+            selectedNumRef = Integer.parseInt(refScanner);
+            referenceLearner = learners.get(selectedNumRef).reference;
+        }catch (Exception e){
+            System.out.println("Something went wrong " + e.getMessage());
+        }
+        if(!referenceLearner.isEmpty()){
+            if(Learner.addRefPromoToLearnInfo(selectedNumRef,promoRef))
+                System.out.println("Learner added successfully");
+        }
         return false;
     }
 

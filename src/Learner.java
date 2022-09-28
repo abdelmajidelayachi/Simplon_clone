@@ -16,10 +16,9 @@ public class Learner extends Person {
         learners.add(new Learner(fName,lName,mail));
     }
 
-    public static boolean addRefPromoToLearnInfo(Learner learner,String refPromo){
-        int indexOfLearnerObj = learners.indexOf(learner);
+    public static boolean addRefPromoToLearnInfo(int indexOfLearnerObj,String refPromo){
         learners.get(indexOfLearnerObj).promoRef = refPromo;
-        return false;
+        return true;
     }
 
 }
