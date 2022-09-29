@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Promo {
@@ -8,7 +9,7 @@ public class Promo {
     public String formerPromoRef;
     public String promoReference;
     static Scanner scanner = new Scanner(System.in);
-    static ArrayList<Promo> promos = new ArrayList<Promo>();
+    static ArrayList<Promo> promos = new ArrayList<>();
     public Promo(String name,String formerRef){
         this.namePromo = name;
         this.formerPromoRef = formerRef;
@@ -54,15 +55,9 @@ public class Promo {
     }
     public static boolean addLearner(String loggedInRef){
         // here where i'm going to add learner reference
-        String promoRef = "";
         System.out.println("----------------------------------------- Adding Learner to my Promo ---------------------------------------------");
         System.out.print("Your promo is  : ");
-        for (Promo promo : promos) {
-            if(promo.formerPromoRef.equals(loggedInRef)){
-                System.out.println(promo.namePromo);
-                promoRef = promo.promoReference;
-            }
-        }
+        String promoRef = Objects.requireNonNull(searchPromoRef(loggedInRef)).promoReference;
         System.out.println("Select Your learner promo : ");
         System.out.println("|-----------------------------------------------------------------------------------------|");
         System.out.println("|   Select  |    Reference     |   First Name   |   Last Name    |           email        |");
@@ -91,6 +86,17 @@ public class Promo {
                 System.out.println("Learner added successfully");
         }
         return false;
+    }
+
+    // search promo ref
+    public static Promo searchPromoRef(String formerRef){
+         for (Promo promo : promos) {
+            if(promo.formerPromoRef.equals(formerRef)){
+                System.out.println(promo.namePromo);
+                return promo;
+            }
+         }
+         return null;
     }
 
 

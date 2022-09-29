@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Former extends Person {
@@ -43,8 +44,8 @@ public class Former extends Person {
                 }
             }case 2 ->{
                 while (true){
-                    boolean isLearnerCreated = Admin.createUser("Learner");
-                    if(isLearnerCreated)
+                    boolean isBriefCreated = Brief.CreateBrief(Promo.searchPromoRef(loggedInRef));
+                    if(isBriefCreated)
                         break;
                     else{
                         System.out.println("To continue : Press 1");
@@ -54,26 +55,13 @@ public class Former extends Person {
                         }
                     }
                 }
-            }case 3-> {
-                while (true){
-                    boolean isLearnerCreated = Promo.createPromo();
-                    if(isLearnerCreated)
-                        break;
-                    else{
-                        System.out.println("To continue : Press 1");
-                        System.out.println("To back     : Press 0");
-                        if(Integer.parseInt(scanner.nextLine()) == 0){
-                            break;
-                        }
-                    }
-                }
-
-            }case 4->{
+            }case 3->{
                 System.out.println("Bye ✌️");
                 return false;
             }
         }
         return true;
     }
+
 
 }

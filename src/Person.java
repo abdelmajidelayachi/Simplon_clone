@@ -19,12 +19,6 @@ public class Person {
         }
     }
 
-    public static int handleException(String inputOption){
-        try{
-            return Integer.parseInt(inputOption);
-        }catch (Exception e){
-            System.out.println("Something went wrong!!!!"+ e);
-            return -1;
-        }
-    }
+
+
 }

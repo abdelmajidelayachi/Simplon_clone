@@ -1,5 +1,8 @@
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -53,7 +56,7 @@ public class Main {
             System.out.println("2 : Former");
             System.out.println("3 : Learner\n\t:");
             String inRole = scanner.nextLine();
-            int roleNumber = Integer.parseInt(inRole);
+            int roleNumber = Helper.handleException(inRole);
             ArrayList<Person> admins = Admin.getAdmins();
             ArrayList<Person> formers = Former.getFormers();
             ArrayList<Person> learners = Learner.getLearners();
@@ -87,6 +90,7 @@ public class Main {
         Learner.createLearner("learner1","El Ayachi","learner11");
         Learner.createLearner("learner1","El Ayachi","learner12");
         Learner.createLearner("learner1","El Ayachi","learner13");
+
       /*   Former.createFormer("Mohammed","El Ayachi","elayachiabdel@gmail.com");*/
 //        System.out.println("-------------------learners-----------------------");
 //        ArrayList<Person> learners = Learner.getLearners();
@@ -110,9 +114,9 @@ public class Main {
          ArrayList<Person> admins = Admin.getAdmins();
          for (int i = 0; i < admins.size(); i++) {
             System.out.println("user "+i);
-            System.out.println("firstName : "+admins.get(i).firstName);
-            System.out.println("lastName : "+admins.get(i).lastName);
-            System.out.println("email : "+admins.get(i).reference);
+            System.out.println("firstName : " + admins.get(i).firstName);
+            System.out.println("lastName : " + admins.get(i).lastName);
+            System.out.println("email : " + admins.get(i).reference);
         }
         while (true) {
             String role = authantification();

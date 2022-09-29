@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Handler;
 
 public class Admin extends Person {
     static Scanner scanner = new Scanner(System.in);
@@ -62,7 +63,7 @@ public class Admin extends Person {
                         do {
                             System.out.println("To continue : Press 1");
                             System.out.println("To back     : Press 0");
-                            option = Person.handleException(scanner.nextLine());
+                            option = Helper.handleException(scanner.nextLine());
                         } while (option == -1);
                         if(option == 0 ){
                             break;
@@ -79,7 +80,7 @@ public class Admin extends Person {
                         do {
                             System.out.println("To continue : Press 1");
                             System.out.println("To back     : Press 0");
-                            option = Person.handleException(scanner.nextLine());
+                            option = Helper.handleException(scanner.nextLine());
                         } while (option == -1);
                         if(option == 0 ){
                             break;
