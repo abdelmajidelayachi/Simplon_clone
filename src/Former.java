@@ -44,7 +44,10 @@ public class Former extends Person {
                 }
             }case 2 ->{
                 while (true){
-                    boolean isBriefCreated = Brief.CreateBrief(Promo.searchPromoRef(loggedInRef));
+                    boolean isBriefCreated = false;
+                    if (Promo.searchPromoRef(loggedInRef)!=null){
+                        isBriefCreated = Brief.CreateBrief(Promo.searchPromoRef(loggedInRef));
+                    }
                     if(isBriefCreated)
                         break;
                     else{

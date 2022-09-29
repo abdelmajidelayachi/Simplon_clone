@@ -56,9 +56,10 @@ public class Admin extends Person {
             case 1 ->{
                 while (true) {
                     boolean isFormerCreated = Admin.createUser("Former");
-                    if (isFormerCreated)
+                    if (isFormerCreated) {
+                        Print.printUsers(Former.formers);
                         break;
-                    else {
+                    }else {
                         int option = -1;
                         do {
                             System.out.println("To continue : Press 1");
@@ -73,9 +74,10 @@ public class Admin extends Person {
             }case 2 ->{
                 while (true){
                     boolean isLearnerCreated = Admin.createUser("Learner");
-                    if(isLearnerCreated)
-                        break;
-                    else{
+                    if(isLearnerCreated){
+                         Print.printUsers(Learner.learners);
+                         break;
+                    }else{
                         int option = -1;
                         do {
                             System.out.println("To continue : Press 1");
@@ -89,9 +91,11 @@ public class Admin extends Person {
                 }
             }case 3-> {
                 while (true){
-                    boolean isLearnerCreated = Promo.createPromo();
-                    if(isLearnerCreated)
+                    boolean isPromoCreated = Promo.createPromo();
+                    if(isPromoCreated) {
+                        Print.printPromos();
                         break;
+                    }
                     else{
                         System.out.println("To continue : Press 1");
                         System.out.println("To back     : Press 0");
