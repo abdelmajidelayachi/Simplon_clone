@@ -35,9 +35,7 @@ public class Former extends Person {
                     if (isPromoLearnerAdded)
                         break;
                     else {
-                        System.out.println("To continue : Press 1");
-                        System.out.println("To back     : Press 0");
-                        if (Integer.parseInt(scanner.nextLine()) == 0) {
+                        if(Helper.breakOrContinueProcess()){
                             break;
                         }
                     }
@@ -46,14 +44,12 @@ public class Former extends Person {
                 while (true){
                     boolean isBriefCreated = false;
                     if (Promo.searchPromoRef(loggedInRef)!=null){
-                        isBriefCreated = Brief.CreateBrief(Promo.searchPromoRef(loggedInRef));
+                        isBriefCreated = Brief.CreateBrief(Objects.requireNonNull(Promo.searchPromoRef(loggedInRef)));
                     }
                     if(isBriefCreated)
                         break;
                     else{
-                        System.out.println("To continue : Press 1");
-                        System.out.println("To back     : Press 0");
-                        if(Integer.parseInt(scanner.nextLine()) == 0){
+                        if(Helper.breakOrContinueProcess()){
                             break;
                         }
                     }

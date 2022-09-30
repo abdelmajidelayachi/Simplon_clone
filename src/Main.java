@@ -32,16 +32,12 @@ public class Main {
                     loggedInUserRef =users.get(indexOfUser).reference;
                     return true;
                 }else{
-                    System.out.println("To continue : Press 1");
-                    System.out.println("To back     : Press 0");
-                    if(Integer.parseInt(scanner.nextLine())==0){
+                    if(Helper.breakOrContinueProcess()){
                         return false;
                     }
                 }
             }else{
-                System.out.println("To continue : Press 1");
-                System.out.println("To back     : Press 0");
-                if(Integer.parseInt(scanner.nextLine())==0){
+                if(Helper.breakOrContinueProcess()){
                     return false;
                 }
             }
@@ -141,7 +137,12 @@ public class Main {
                 }
                 case "Learner" -> {
                     System.out.println("Welcome to Learners Home page 🤩🤩🤩🤩");
-                    scanner.nextLine();
+                    while (true) {
+                        boolean isLoggin = Learner.learnerMenu(loggedInUserRef);
+                        if (!isLoggin) {
+                            break;
+                        }
+                    }
                 }
                 default -> System.exit(0);
             }

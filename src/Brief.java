@@ -6,13 +6,15 @@ public class Brief {
 
     public String briefName;
     public String briefContext;
+    public String promoReference;
     public LocalDate deadline;
     public LocalDate startDate;
 
     static ArrayList<Brief> briefs = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
-    public Brief (String bName,String bContext, LocalDate eDate, LocalDate sDate){
+    public Brief (String bName,String bContext,String promoRef, LocalDate eDate, LocalDate sDate){
         briefName = bName;
+        promoReference = promoRef;
         deadline = eDate;
         startDate = sDate;
         briefContext = bContext;
@@ -31,7 +33,8 @@ public class Brief {
         LocalDate eDate = Helper.getDateFromUser();
         System.out.println(sDate);
         if(!name.trim().isEmpty() && !context.trim().isEmpty() && !(sDate ==null)){
-            briefs.add(new Brief(name,context,eDate,sDate));
+            briefs.add(new Brief(name,context,promo.promoReference,eDate,sDate));
+            Print.printBriefForFormer(promo.promoReference);
             return true;
         }
         return false;
