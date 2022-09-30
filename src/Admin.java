@@ -56,16 +56,11 @@ public class Admin extends Person {
             case 1 ->{
                 while (true) {
                     boolean isFormerCreated = Admin.createUser("Former");
-                    if (isFormerCreated)
+                    if (isFormerCreated) {
+                        Print.printUsers(Former.formers);
                         break;
-                    else {
-                        int option = -1;
-                        do {
-                            System.out.println("To continue : Press 1");
-                            System.out.println("To back     : Press 0");
-                            option = Helper.handleException(scanner.nextLine());
-                        } while (option == -1);
-                        if(option == 0 ){
+                    }else {
+                        if(Helper.breakOrContinueProcess()){
                             break;
                         }
                     }
@@ -73,29 +68,24 @@ public class Admin extends Person {
             }case 2 ->{
                 while (true){
                     boolean isLearnerCreated = Admin.createUser("Learner");
-                    if(isLearnerCreated)
-                        break;
-                    else{
-                        int option = -1;
-                        do {
-                            System.out.println("To continue : Press 1");
-                            System.out.println("To back     : Press 0");
-                            option = Helper.handleException(scanner.nextLine());
-                        } while (option == -1);
-                        if(option == 0 ){
+                    if(isLearnerCreated){
+                         Print.printUsers(Learner.learners);
+                         break;
+                    }else{
+                        if(Helper.breakOrContinueProcess()){
                             break;
                         }
                     }
                 }
             }case 3-> {
                 while (true){
-                    boolean isLearnerCreated = Promo.createPromo();
-                    if(isLearnerCreated)
+                    boolean isPromoCreated = Promo.createPromo();
+                    if(isPromoCreated) {
+                        Print.printPromos();
                         break;
+                    }
                     else{
-                        System.out.println("To continue : Press 1");
-                        System.out.println("To back     : Press 0");
-                        if(Integer.parseInt(scanner.nextLine()) == 0){
+                        if(Helper.breakOrContinueProcess()){
                             break;
                         }
                     }
