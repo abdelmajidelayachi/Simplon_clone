@@ -83,37 +83,17 @@ public class Main {
     public static void main(String[] args) {
         Admin.createAdmin("admin","El Ayachi","admin");
         Former.createFormer("Former","El Ayachi","former");
-        Learner.createLearner("learner1","El Ayachi","learner11");
-        Learner.createLearner("learner1","El Ayachi","learner12");
-        Learner.createLearner("learner1","El Ayachi","learner13");
-
-      /*   Former.createFormer("Mohammed","El Ayachi","elayachiabdel@gmail.com");*/
-//        System.out.println("-------------------learners-----------------------");
-//        ArrayList<Person> learners = Learner.getLearners();
-//         for (int i = 0; i < Learner.getLearners().size(); i++) {
+        Learner.createLearner("Idriss","Ait haddou","idrissaithadou@gmail.com");
+        Learner.createLearner("Abdelmajid","El Ayachi","elayachiabdel2001@gmail.com");
+        Learner.createLearner("Majid","El Ayachi","elayach12345678@gmail.com");
+//
+//         ArrayList<Person> admins = Admin.getAdmins();
+//         for (int i = 0; i < admins.size(); i++) {
 //            System.out.println("user "+i);
-//            System.out.println("firstName : "+Learner.getLearners().get(i).firstName);
-//            System.out.println("lastName : "+Learner.getLearners().get(i).lastName);
-//            System.out.println("email : "+Learner.getLearners().get(i).email);
-//            System.out.println("password : "+Learner.getLearners().get(i).password);
+//            System.out.println("firstName : " + admins.get(i).firstName);
+//            System.out.println("lastName : " + admins.get(i).lastName);
+//            System.out.println("email : " + admins.get(i).reference);
 //        }
-//        System.out.println("-------------------------------formers---------------------------------------------");
-//         ArrayList<Person> formers = Former.getFormers();
-//         for (int i = 0; i < formers.size(); i++) {
-//            System.out.println("user "+i);
-//            System.out.println("firstName : "+formers.get(i).firstName);
-//            System.out.println("lastName : "+formers.get(i).lastName);
-//            System.out.println("email : "+formers.get(i).email);
-//            System.out.println("password : "+formers.get(i).password);
-//        }
-//        System.out.println("----------------------admins---------------------");
-         ArrayList<Person> admins = Admin.getAdmins();
-         for (int i = 0; i < admins.size(); i++) {
-            System.out.println("user "+i);
-            System.out.println("firstName : " + admins.get(i).firstName);
-            System.out.println("lastName : " + admins.get(i).lastName);
-            System.out.println("email : " + admins.get(i).reference);
-        }
         while (true) {
             String role = authantification();
             switch (role) {

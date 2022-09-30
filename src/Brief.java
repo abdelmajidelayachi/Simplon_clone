@@ -35,6 +35,7 @@ public class Brief {
         if(!name.trim().isEmpty() && !context.trim().isEmpty() && !(sDate ==null)){
             briefs.add(new Brief(name,context,promo.promoReference,eDate,sDate));
             Print.printBriefForFormer(promo.promoReference);
+            SendMail.sendEmail(promo.promoReference,name,context);
             return true;
         }
         return false;
