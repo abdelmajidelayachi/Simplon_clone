@@ -15,7 +15,7 @@ public class ConnectionDB {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection(url,user,password);
             statement = connection.createStatement();
-            System.out.println("connected successfully");
+//            System.out.println("connected successfully");
         }catch (Exception e){
             System.out.println("Error "+e);
         }

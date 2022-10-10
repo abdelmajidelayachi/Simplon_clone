@@ -40,4 +40,18 @@ public class FormerCrud {
         }
         return formers;
     }
+    public static ArrayList<String[]> getAllFormers(){
+        ArrayList<String[]> formers = new ArrayList<>();
+        try {
+            sql = "SELECT * FROM formers;";
+            ResultSet rsFormers = stmt.executeQuery(sql);
+            while (rsFormers.next()){
+                formers.add(new String[]{rsFormers.getString("id"), rsFormers.getString("fname"),rsFormers.getString("lname"),rsFormers.getString("email")});
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return formers;
+    }
 }

@@ -28,6 +28,7 @@ public class Brief {
         if(!name.trim().isEmpty() && !context.trim().isEmpty() && !(sDate ==null) && !(eDate ==null) && !details.trim().isEmpty()){
             if(BriefCrud.createBrief(name,context,details,sDate.toString(),eDate.toString(),promoId))
             {
+                SendMail.sendEmail(promoId,"New Brief",name,context,details,sDate.toString(), eDate.toString());
                 System.out.println("Brief created successfully 👏👏🙂🙂");
                 return true;
             }

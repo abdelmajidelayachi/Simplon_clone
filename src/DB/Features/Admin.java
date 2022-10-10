@@ -5,6 +5,7 @@ import DB.Models.FormerCrud;
 import DB.Models.LearnerCrud;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Admin {
@@ -39,7 +40,9 @@ public class Admin {
         System.out.println("\t2 : Create Learner.");
         System.out.println("\t3 : Create promo.");
         System.out.println("\t4 : Assign former to promo.");
-        System.out.println("\t5 : Logout.");
+        System.out.println("\t5 : View all Formers");
+        System.out.println("\t6 : View all Learners");
+        System.out.println("\t7 : Logout.");
         String selectedOption = scanner.nextLine();
         int selectedNumOfOption=0;
         try{
@@ -59,7 +62,6 @@ public class Admin {
                             break;
                         }
                     }
-
                 }
             }
             case 2 -> {
@@ -103,7 +105,31 @@ public class Admin {
                         }
                     }
                 }
-            }case 5->{
+            }case 5-> {
+                while (true) {
+                    ArrayList<String[]> formers = FormerCrud.getAllFormers();
+                    boolean isViewFormers = Print.printUsers(formers);
+                    if (isViewFormers) {
+                        break;
+                    } else {
+                        if (Helper.breakOrContinueProcess()) {
+                            break;
+                        }
+                    }
+                }
+            }case 6-> {
+                while (true) {
+                    ArrayList<String[]> learners = LearnerCrud.getAllLearners();
+                    boolean isViewLearners = Print.printUsers(learners);
+                    if (isViewLearners) {
+                        break;
+                    } else {
+                        if (Helper.breakOrContinueProcess()) {
+                            break;
+                        }
+                    }
+                }
+            }case 7->{
                 System.out.println("Bye ✌️");
                 return false;
             }

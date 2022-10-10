@@ -3,6 +3,7 @@ package DB;
 import DB.Auth.Auth;
 import DB.Features.Admin;
 import DB.Features.Former;
+import DB.Features.Learner;
 import DB.Helpers.Helper;
 import DB.Models.AdminCrud;
 import DB.Models.FormerCrud;
@@ -93,12 +94,12 @@ public class Main {
                 }
                 case "Learner" -> {
                     System.out.println("Welcome to Learners Home page 🤩🤩🤩🤩");
-//                    while (true) {
-//                        boolean isLoggin = Learner.learnerMenu(loggedInUserRef);
-//                        if (!isLoggin) {
-//                            break;
-//                        }
-//                    }
+                    while (true) {
+                        boolean isLoggin = Learner.learnerMenu(idUser);
+                        if (!isLoggin) {
+                            break;
+                        }
+                    }
                 }
                 default -> System.exit(0);
             }
