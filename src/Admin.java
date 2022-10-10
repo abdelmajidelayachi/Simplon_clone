@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Handler;
 
 public class Admin extends Person {
     static Scanner scanner = new Scanner(System.in);
@@ -12,7 +11,7 @@ public class Admin extends Person {
     public static ArrayList<Person> getAdmins(){
         return admins;
     }
-    public static void createAdmin(String fName,String lName,String mail){
+    public static void createAdmin(String fName,String lName,String mail) {
         admins.add(new Admin(fName,lName,mail));
     }
 
