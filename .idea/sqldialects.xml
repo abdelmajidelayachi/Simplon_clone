@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/DB/Auth/Auth.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/DB/Models/AdminCrud.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/DB/Models/BriefCrud.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/DB/Models/FormerCrud.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/DB/Models/LearnerCrud.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/DB/Models/PromoCrud.java" dialect="GenericSQL" />
+  </component>
+</project>
