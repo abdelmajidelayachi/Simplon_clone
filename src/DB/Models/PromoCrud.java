@@ -5,12 +5,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 public class PromoCrud {
-    static Statement stmt = new ConnectionDB().statement;
     static String sql = "";
 
     public static ArrayList<String[]> getAllPromos(){
         ArrayList<String[]> promos = new ArrayList<>();
         try {
+          Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "SELECT * FROM promos;";
             ResultSet rsPromos = stmt.executeQuery(sql);
             while (rsPromos.next()){
@@ -25,6 +25,7 @@ public class PromoCrud {
     public static ArrayList<String[]> getWithNoFormer(){
         ArrayList<String[]> promos = new ArrayList<>();
         try {
+          Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "SELECT * FROM promos WHERE former_id IS NULL ;";
             ResultSet rsPromos = stmt.executeQuery(sql);
             while (rsPromos.next()){
@@ -39,6 +40,7 @@ public class PromoCrud {
     public static ArrayList<String[]> getPromoByFormer(int formerId){
         ArrayList<String[]> promos = new ArrayList<>();
         try {
+          Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "SELECT * FROM promos WHERE former_id = "+formerId+" ;";
             ResultSet rsPromos = stmt.executeQuery(sql);
             while (rsPromos.next()){
@@ -55,6 +57,7 @@ public class PromoCrud {
     public static boolean createPromo(String name){
         boolean isExecuted = false;
         try {
+          Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "INSERT INTO promos (name) "
                     + "VALUES ( '"+name+"' );";
             stmt.executeUpdate(sql);
@@ -67,6 +70,7 @@ public class PromoCrud {
 
     public static boolean assignFormerToPromo(int former_id,int promo_id) throws SQLException {
         boolean isExecuted = false;
+          Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
         try {
             sql = "UPDATE promos SET former_id = "+former_id+" WHERE id = "+promo_id+";";
             sql += "UPDATE formers SET ishaspromo = true WHERE id = "+former_id+";";

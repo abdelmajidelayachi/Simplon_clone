@@ -6,12 +6,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class LearnerCrud {
-     static Statement stmt = new ConnectionDB().statement;
+
     static String sql = "";
 
     public static String[] getLearner(int learnerId){
             String[] learner = new String[5];
         try {
+          Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "SELECT * FROM learners WHERE id = "+learnerId+" ;";
             ResultSet rsLearners = stmt.executeQuery(sql);
             while (rsLearners.next()){
@@ -28,6 +29,7 @@ public class LearnerCrud {
         String password = "learner"+fName.toLowerCase();
         boolean isExecuted = false;
         try {
+          Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "INSERT INTO learners (FNAME,LNAME,EMAIL,PASSWORD) "
                     + "VALUES ( '"+fName+"', '"+lName+"', '"+email+"', '"+password+"' );";
             stmt.executeUpdate(sql);
@@ -40,6 +42,7 @@ public class LearnerCrud {
     public static ArrayList<String[]> getLearnerWithNoPromo(){
         ArrayList<String[]> learners = new ArrayList<>();
         try {
+          Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "SELECT * FROM learners WHERE promo_id is null ;";
             ResultSet rsLearners = stmt.executeQuery(sql);
             while (rsLearners.next()){
@@ -54,6 +57,7 @@ public class LearnerCrud {
     public static ArrayList<String[]> getAllLearners(){
         ArrayList<String[]> learners = new ArrayList<>();
         try {
+          Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "SELECT * FROM learners ;";
             ResultSet rsLearners = stmt.executeQuery(sql);
             while (rsLearners.next()){
@@ -69,6 +73,7 @@ public class LearnerCrud {
     public static boolean assignPromoToLearner(int promoId,int learnerId){
         boolean isExecuted = false;
         try {
+          Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "UPDATE learners SET promo_id = "+promoId+" WHERE id = "+learnerId+";";
             stmt.executeUpdate(sql);
             isExecuted = true;
@@ -82,6 +87,7 @@ public class LearnerCrud {
     public static ArrayList<String[]> getAllLearnerInPromo(int promoId){
         ArrayList<String[]> learners = new ArrayList<>();
         try {
+          Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "SELECT * FROM learners WHERE promo_id ="+promoId+" ;";
             ResultSet rsLearners = stmt.executeQuery(sql);
             while (rsLearners.next()){

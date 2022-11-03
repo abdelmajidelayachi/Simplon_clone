@@ -6,17 +6,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class FormerCrud {
-     static Statement stmt = new ConnectionDB().statement;
     static String sql = "";
 
     public static boolean createFormer(String fName, String lName, String email){
         String password = "former"+fName.toLowerCase();
         boolean isExecuted = false;
         try {
+              Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "INSERT INTO formers (FNAME,LNAME,EMAIL,PASSWORD) "
                     + "VALUES ( '"+fName+"', '"+lName+"', '"+email+"', '"+password+"' );";
             stmt.executeUpdate(sql);
-            stmt.close();
             isExecuted = true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -29,6 +28,7 @@ public class FormerCrud {
     public static ArrayList<String[]> getNoAssignedFormer(){
         ArrayList<String[]> formers = new ArrayList<>();
         try {
+            Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "SELECT * FROM formers WHERE ishavepromo = FALSE;";
             ResultSet rsFormers = stmt.executeQuery(sql);
             while (rsFormers.next()){
@@ -43,6 +43,7 @@ public class FormerCrud {
     public static ArrayList<String[]> getAllFormers(){
         ArrayList<String[]> formers = new ArrayList<>();
         try {
+            Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "SELECT * FROM formers;";
             ResultSet rsFormers = stmt.executeQuery(sql);
             while (rsFormers.next()){
