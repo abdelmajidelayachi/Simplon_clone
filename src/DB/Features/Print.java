@@ -30,6 +30,17 @@ public class Print {
         }
 
     }
+    public static void printAllPromos(){
+        ArrayList<String[]> promos = PromoCrud.getAllPromos();
+        System.out.println("|-----------------------------------------------------------------------------|");
+        System.out.println("|     id     |      Promo name     |           Former reference        |");
+        System.out.println("|-----------------------------------------------------------------------------|");
+        for (String[] promo : promos) {
+            System.out.println("    " + promo[0] + "     |   " + promo[1] + "   |   " + promo[2] + " ");
+            System.out.println("|-----------------------------------------------------------------------------|");
+        }
+
+    }
     public static void printFormerRest(){
         ArrayList<String[]> formers = FormerCrud.getNoAssignedFormer();
         System.out.println("|-----------------------------------------------------------------------------|");

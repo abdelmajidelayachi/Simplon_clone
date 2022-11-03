@@ -1,5 +1,6 @@
 package DB.Models;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,10 +14,16 @@ public class BriefCrud {
     public static boolean createBrief(String name, String context, String details,String sDate , String eDate , int promoId){
         boolean isExecuted = false;
         try {
-            Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "INSERT INTO briefs (name,context,body,start_date,deadline, promo_id) "
-                    + "VALUES ( '"+name+"', '"+context+"', '"+details+"', '"+sDate+"','"+eDate+"','"+promoId+"' );";
-            stmt.executeUpdate(sql);
+                    + "VALUES ( ?,?, ?,?,? );";
+            PreparedStatement stmt = ConnectionDB.getConnectionDB().getConnection().prepareStatement(sql);
+            stmt.setString(1,name);
+            stmt.setString(2,context);
+            stmt.setString(3,details);
+            stmt.setString(4,sDate);
+            stmt.setString(5,eDate);
+            stmt.setInt(1,promoId);
+            stmt.executeUpdate();
             isExecuted = true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -27,9 +34,10 @@ public class BriefCrud {
     public static ArrayList<String[]> getAllPromoBriefs(int promoId){
         ArrayList<String[]> briefs = new ArrayList<>();
         try {
-              Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
-            sql = "SELECT * FROM briefs WHERE promo_id = "+promoId+" ORDER BY start_date DESC ;";
-            ResultSet rsBriefs = stmt.executeQuery(sql);
+            sql = "SELECT * FROM briefs WHERE promo_id = ? ORDER BY start_date DESC ;";
+            PreparedStatement stmt = ConnectionDB.getConnectionDB().getConnection().prepareStatement(sql);
+            stmt.setInt(1,promoId);
+            ResultSet rsBriefs = stmt.executeQuery();
             while (rsBriefs.next()){
                 briefs.add(new String[]{rsBriefs.getString("id"), rsBriefs.getString("name"),rsBriefs.getString("context"),rsBriefs.getString("body"),rsBriefs.getString("start_date"),rsBriefs.getString("deadline")});
             }
@@ -42,9 +50,10 @@ public class BriefCrud {
     public static ArrayList<String[]> getRecentBrief(int promoId){
         ArrayList<String[]> briefs = new ArrayList<>();
         try {
-              Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "SELECT * FROM briefs WHERE promo_id = "+promoId+" ORDER  BY  start_date DESC;";
-            ResultSet rsBriefs = stmt.executeQuery(sql);
+
+            PreparedStatement stmt = ConnectionDB.getConnectionDB().getConnection().prepareStatement(sql);
+            ResultSet rsBriefs = stmt.executeQuery();
             while (rsBriefs.next()){
                 briefs.add(new String[]{rsBriefs.getString("id"), rsBriefs.getString("name"),rsBriefs.getString("context"),rsBriefs.getString("body"),rsBriefs.getString("start_date"),rsBriefs.getString("deadline")});
                 break;

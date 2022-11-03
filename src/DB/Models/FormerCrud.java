@@ -1,5 +1,6 @@
 package DB.Models;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,10 +13,14 @@ public class FormerCrud {
         String password = "former"+fName.toLowerCase();
         boolean isExecuted = false;
         try {
-              Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "INSERT INTO formers (FNAME,LNAME,EMAIL,PASSWORD) "
-                    + "VALUES ( '"+fName+"', '"+lName+"', '"+email+"', '"+password+"' );";
-            stmt.executeUpdate(sql);
+                    + "VALUES ( ?, ?, ?, ? );";
+              PreparedStatement stmt = ConnectionDB.getConnectionDB().getConnection().prepareStatement(sql);
+              stmt.setString(1,fName);
+              stmt.setString(2,lName);
+              stmt.setString(3,email);
+              stmt.setString(4,password);
+            stmt.executeUpdate();
             isExecuted = true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -28,9 +33,9 @@ public class FormerCrud {
     public static ArrayList<String[]> getNoAssignedFormer(){
         ArrayList<String[]> formers = new ArrayList<>();
         try {
-            Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
-            sql = "SELECT * FROM formers WHERE ishavepromo = FALSE;";
-            ResultSet rsFormers = stmt.executeQuery(sql);
+            sql = "SELECT * FROM formers WHERE ishaspromo = FALSE;";
+            PreparedStatement stmt = ConnectionDB.getConnectionDB().getConnection().prepareStatement(sql);
+            ResultSet rsFormers = stmt.executeQuery();
             while (rsFormers.next()){
                 formers.add(new String[]{rsFormers.getString("id"), rsFormers.getString("fname"),rsFormers.getString("lname"),rsFormers.getString("email")});
             }
@@ -43,9 +48,9 @@ public class FormerCrud {
     public static ArrayList<String[]> getAllFormers(){
         ArrayList<String[]> formers = new ArrayList<>();
         try {
-            Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "SELECT * FROM formers;";
-            ResultSet rsFormers = stmt.executeQuery(sql);
+            PreparedStatement stmt = ConnectionDB.getConnectionDB().getConnection().prepareStatement(sql);
+            ResultSet rsFormers = stmt.executeQuery();
             while (rsFormers.next()){
                 formers.add(new String[]{rsFormers.getString("id"), rsFormers.getString("fname"),rsFormers.getString("lname"),rsFormers.getString("email")});
             }

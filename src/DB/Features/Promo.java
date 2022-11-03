@@ -23,7 +23,7 @@ public class Promo {
             }else{
                 System.out.println("Promo Failed to create please try again!!");
             }
-            Print.printPromos();
+            Print.printAllPromos();
             return true;
         }
         return false;
