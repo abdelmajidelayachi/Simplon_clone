@@ -7,12 +7,13 @@ import java.util.ArrayList;
 
 public class BriefCrud {
 
-    static Statement stmt = new ConnectionDB().statement;
+
     static String sql = "";
 
     public static boolean createBrief(String name, String context, String details,String sDate , String eDate , int promoId){
         boolean isExecuted = false;
         try {
+            Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "INSERT INTO briefs (name,context,body,start_date,deadline, promo_id) "
                     + "VALUES ( '"+name+"', '"+context+"', '"+details+"', '"+sDate+"','"+eDate+"','"+promoId+"' );";
             stmt.executeUpdate(sql);
@@ -26,6 +27,7 @@ public class BriefCrud {
     public static ArrayList<String[]> getAllPromoBriefs(int promoId){
         ArrayList<String[]> briefs = new ArrayList<>();
         try {
+              Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "SELECT * FROM briefs WHERE promo_id = "+promoId+" ORDER BY start_date DESC ;";
             ResultSet rsBriefs = stmt.executeQuery(sql);
             while (rsBriefs.next()){
@@ -40,6 +42,7 @@ public class BriefCrud {
     public static ArrayList<String[]> getRecentBrief(int promoId){
         ArrayList<String[]> briefs = new ArrayList<>();
         try {
+              Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             sql = "SELECT * FROM briefs WHERE promo_id = "+promoId+" ORDER  BY  start_date DESC;";
             ResultSet rsBriefs = stmt.executeQuery(sql);
             while (rsBriefs.next()){

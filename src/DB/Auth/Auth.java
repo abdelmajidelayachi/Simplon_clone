@@ -8,11 +8,12 @@ import java.sql.Statement;
 
 public class Auth {
 
-    static Statement stmt = new ConnectionDB().statement;
+
     static String sql = "";
     public static int checkAuthAdmin(String email, String password, String role){
         int isUser = 0;
         try {
+            Statement stmt = ConnectionDB.getConnectionDB().getConnection().createStatement();
             if(role.equals("Admin"))
                 sql = "SELECT id FROM admins WHERE email = '"+email+"' AND password = '"+password+"';";
             if (role.equals("Former"))
